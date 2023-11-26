@@ -21,10 +21,18 @@ app.use(express.static('public'));
 app.use(productRouter)
 app.use(authRouter)
 
+const startApp = () => {
+    try {   
+        // Port configuration
+        const PORT = process.env.PORT || 2100;  
+        app.listen(PORT,() => console.log(`Server running on port ${PORT}`))
+        // MongoDB connection
+        mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected to database'))
+        // mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true}).then(() => console.log('Connected to database'))
+    }catch(err) {
+        console.log(err)
+    }
+} 
 
-const PORT = process.env.PORT || 2100;  
-app.listen(PORT,() => console.log(`Server running on port ${PORT}`))
+startApp();
 
-// mongodb+srv://nodirbekdevoloper:<password>@cluster0.x5bevgr.mongodb.net/?retryWrites=true&w=majority
-
-// mongoose.connect('',)
