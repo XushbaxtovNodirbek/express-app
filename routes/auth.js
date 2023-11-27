@@ -1,4 +1,5 @@
 import { Router } from "express";
+import User from "../models/User.js";
 
 const router = Router();
 
@@ -17,12 +18,21 @@ router.get('/register',(req,res) => {
 })
 
 router.post('/login',(req,res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.redirect('/')
 })
 
-router.post('/register',(req,res) => {
-    console.log(req.body);
+router.post('/register',async (req,res) => {
+
+    const userDate = {
+        firstname: req.body.firstName,
+        email: req.body.email,
+        password: req.body.password
+    }
+    
+    const user = await User.create(userDate);
+    console.log(user);
+
     res.redirect('/')
 })
 
