@@ -22,15 +22,19 @@
         {{/if}}
         {{!-- <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/add">Add</a> --}}
         <div>
-            {{#if isLogin}}
-              <a class="btn btn-outline-primary me-2 active" href="/login">Login</a>
+            {{#if isAuth}}
+              <a class="btn btn-outline-danger me-2 active" href="/logout">Logout</a>
             {{else}}
-              <a class="btn btn-outline-primary me-2 " href="/login">Login</a>
-            {{/if}}
-            {{#if isRegister}}
-              <a class="btn btn-primary active" href="/register">Sign up</a>
-            {{else}}
-              <a class="btn btn-primary" href="/register">Sign up</a>
+              {{#if isLogin}}
+                <a class="btn btn-outline-primary me-2 active" href="/login">Login</a>
+              {{else}}
+                <a class="btn btn-outline-primary me-2 " href="/login">Login</a>
+              {{/if}}
+              {{#if isRegister}}
+                <a class="btn btn-primary active" href="/register">Sign up</a>
+              {{else}}
+                <a class="btn btn-primary" href="/register">Sign up</a>
+              {{/if}}
             {{/if}}
         </div>
       </nav>

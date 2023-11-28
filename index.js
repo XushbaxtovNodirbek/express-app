@@ -6,6 +6,8 @@ import authRouter from './routes/auth.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import varMiddle from './middleweares/var.js';
 
 dotenv.config();
 const app = express();
@@ -20,6 +22,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'));
 app.use(flash());
+app.use(cookieParser());
+app.use(varMiddle);
 app.use(session({
     secret: 'xn',
     resave: false,
