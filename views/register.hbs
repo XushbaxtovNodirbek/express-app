@@ -3,6 +3,12 @@
     <form action="/register" method="post">
     <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      {{#if registerError}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error!</strong> {{registerError}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {{/if}}
     <div class="form-floating mb-1">
       <input name="firstName" type="text" class="form-control" id="floatingInput" placeholder="First Name">
       <label for="floatingInput">First name</label>

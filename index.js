@@ -1,9 +1,11 @@
 import express from 'express';
 import { create } from 'express-handlebars';
 import productRouter from './routes/product.js';
+import flash from "connect-flash";
 import authRouter from './routes/auth.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import session from 'express-session';
 
 dotenv.config();
 const app = express();
@@ -17,7 +19,12 @@ app.set('views','./views');
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'));
-
+app.use(flash());
+app.use(session({
+    secret: 'xn',
+    resave: false,
+    saveUninitialized: false,
+}))
 app.use(productRouter)
 app.use(authRouter)
 
