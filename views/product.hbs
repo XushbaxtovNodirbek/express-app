@@ -1,0 +1,39 @@
+<div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {{#each products}}
+        <div class="col">
+            <div class="card">
+                <img src={{image}} class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a href="/product-about?id={{_id}}" class="btn btn-primary">Batafsil..</a>
+                            <a href="/product-edit?id={{_id}}"><img src="/img/edit.png" width="40" alt="edit"></a>
+                            <a href="/product-delete?id={{_id}}"><img src="/img/delete.png" width="40" alt="delete"></a>
+                        </div>
+                        <button class="btn btn-warning" style="cursor: default;">Prise: {{price}}$</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+
+
+  {{!-- <div class="col">
+    <div class="card">
+     <img src="https://sammi.ac/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F35ca3db9-fb43-4f12-bd48-8b08a503db09-kilwwj.png&w=1920&q=75" class="card-img-top" alt="...">
+     <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <button class="btn btn-warning" style="cursor: default;">Prise: 14$</button>
+        </div>
+     </div>
+    </div>
+  </div> --}}
+  
+</div>
+</div>
