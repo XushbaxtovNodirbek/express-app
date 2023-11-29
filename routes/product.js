@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Product from "../models/Product.js";
+import authMid from "../middleweares/auth.js";
 import {getUserId,checkTokenIsEx} from "../services/token.js";
 
 const router = Router();
@@ -12,13 +13,7 @@ router.get('/',async(req,res) => {
     })
 });
 
-router.get('/add',(req,res) => {
-    // CHECK IF TOKEN IS EXPIRED
-    if(checkTokenIsEx(req.cookies.token)){
-        res.clearCookie('token');
-        res.redirect('/login')
-        return
-    }
+router.get('/add',authMid,(req,res) => {
     // RENDER ADD PAGE
     res.render('add',{
         title:'Product | Add',
@@ -62,13 +57,7 @@ router.post('/add-products',async (req,res) =>{
     
 })
 
-router.get('/products',async(req,res) => {
-    // CHECK IF TOKEN IS EXPIRED
-    if(checkTokenIsEx(req.cookies.token)){
-        res.clearCookie('token');
-        res.redirect('/login')
-        return
-    }
+router.get('/products',authMid,async(req,res) => {
     // GET PRODUCTS FROM DB
     const products = await Product.find({userId: getUserId(req.cookies.token)}).lean();
     // RENDER PRODUCTS PAGE
